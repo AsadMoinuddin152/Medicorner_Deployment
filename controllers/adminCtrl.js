@@ -13,7 +13,7 @@ const getAllUsersController = async (req, res) => {
         console.log(error);
         res.status(500).send({
             success: false,
-            message: 'erorr while fetching users',
+            message: 'error while fetching users',
             error,
         });
     }
@@ -45,8 +45,8 @@ const changeAccountStatusController = async (req, res) => {
             status,
         });
         const user = await userModel.findOne({ _id: doctor.userId });
-        const notifcation = user.notifcation;
-        notifcation.push({
+        const notification = user.notification;
+        notification.push({
             type: 'doctor-account-request-updated',
             message: `Your Doctor Account Request Has ${status} `,
             onClickPath: '/notification',
@@ -62,7 +62,7 @@ const changeAccountStatusController = async (req, res) => {
         console.log(error);
         res.status(500).send({
             success: false,
-            message: 'Eror in Account Status',
+            message: 'Error in Account Status',
             error,
         });
     }

@@ -2,7 +2,7 @@ const userModel = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const doctorModel = require('../models/doctorModel');
-const appointmentModel = require('../models/appiontmentModel');
+const appointmentModel = require('../models/appointmentModel');
 const moment = require('moment');
 //register callback
 const registerController = async (req, res) => {
@@ -47,7 +47,7 @@ const loginController = async (req, res) => {
         if (!isMatch) {
             return res
                 .status(200)
-                .send({ message: 'Invlid EMail or Password', success: false });
+                .send({ message: 'Invalid EMail or Password', success: false });
         }
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: '1d',
@@ -90,7 +90,7 @@ const authController = async (req, res) => {
     }
 };
 
-// Apply DOctor CTRL
+// APpply DOctor CTRL
 const applyDoctorController = async (req, res) => {
     try {
         const newDoctor = await doctorModel({ ...req.body, status: 'pending' });
@@ -109,7 +109,7 @@ const applyDoctorController = async (req, res) => {
         await userModel.findByIdAndUpdate(adminUser._id, { notification });
         res.status(201).send({
             success: true,
-            message: 'Doctor Account Applied SUccessfully',
+            message: 'Doctor Account Applied Successfully',
         });
     } catch (error) {
         console.log(error);
@@ -175,7 +175,7 @@ const getAllDoctorsController = async (req, res) => {
         const doctors = await doctorModel.find({ status: 'approved' });
         res.status(200).send({
             success: true,
-            message: 'Doctors Lists Fetched Successfully',
+            message: 'Doctor Lists Fetched Successfully',
             data: doctors,
         });
     } catch (error) {
@@ -183,7 +183,7 @@ const getAllDoctorsController = async (req, res) => {
         res.status(500).send({
             success: false,
             error,
-            message: 'Error While Fetching Doctors',
+            message: 'Error WHile Fetching Doctor',
         });
     }
 };

@@ -1,4 +1,4 @@
-const appointmentModel = require('../models/appiontmentModel');
+const appointmentModel = require('../models/appointmentModel');
 const doctorModel = require('../models/doctorModel');
 const userModel = require('../models/userModel');
 const getDoctorInfoController = async (req, res) => {
@@ -41,7 +41,7 @@ const updateProfileController = async (req, res) => {
     }
 };
 
-//get single docotor
+//get single doctor
 const getDoctorByIdController = async (req, res) => {
     try {
         const doctor = await doctorModel.findOne({ _id: req.body.doctorId });
